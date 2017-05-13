@@ -89,8 +89,11 @@ public class ListaOperaciones extends AppCompatActivity {
     }
 
     public void goToPantallaPrincipal(View view){
-        Intent inb1 = new Intent(ListaOperaciones.this, PantallaPrincipal.class);
-        startActivity(inb1);
+        Intent intres = getIntent();
+        setResult(RESULT_CANCELED, intres);
+        finish();
+       // Intent inb1 = new Intent(ListaOperaciones.this, PantallaPrincipal.class);
+      //  startActivity(inb1);
     }
 
     public void goToConfirmarBorrar(View view){

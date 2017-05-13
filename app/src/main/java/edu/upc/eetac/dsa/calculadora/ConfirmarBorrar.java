@@ -16,7 +16,6 @@ public class ConfirmarBorrar extends AppCompatActivity {
         setContentView(R.layout.activity_confirmar_borrar);
         Log.d(tag, "Event onCreate()");
 
-
     }
 
     @Override
