@@ -1,5 +1,6 @@
 package edu.upc.eetac.dsa.calculadora;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,17 +11,31 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import static edu.upc.eetac.dsa.calculadora.R.id.num1;
+import static edu.upc.eetac.dsa.calculadora.R.id.num2;
+
 public class PantallaPrincipal extends AppCompatActivity {
 
     String tag = "PantallaPrincipal"; // tag que indica el ciclo de vida de la app
     String operacio;
-
+    StringBuilder historia = new StringBuilder();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_principal);
         Log.d(tag, "Event onCreate()");
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if ((requestCode==100)&&(resultCode== Activity.RESULT_OK)){
+
+        }
+        else if (resultCode == 1337){
+            this.historia.delete(0,historia.length());
+        }
     }
 
     @Override
@@ -97,7 +112,7 @@ public class PantallaPrincipal extends AppCompatActivity {
 
     public void setValuesToCero(View view){
 
-        EditText editText = (EditText) findViewById(R.id.num1);
+        EditText editText = (EditText) findViewById(num1);
         editText.setText("0");
         EditText editText2 = (EditText) findViewById(R.id.num2);
         editText2.setText("0");
@@ -116,7 +131,7 @@ public class PantallaPrincipal extends AppCompatActivity {
     public void getOperacion(View view){
 
         try {
-            EditText editTextnum1 = (EditText) findViewById(R.id.num1);
+            EditText editTextnum1 = (EditText) findViewById(num1);
             float num1 = Float.parseFloat(editTextnum1.getText().toString());
             Log.d(tag, "num1: "+num1); //verificacio de la correcta obtenció dels numeros
             EditText editTextnum2 = (EditText) findViewById(R.id.num2);
@@ -140,26 +155,39 @@ public class PantallaPrincipal extends AppCompatActivity {
             Log.d(tag, "Sol: "+sol);
             EditText editTextRes = (EditText) findViewById(R.id.res);
             editTextRes.setText("" + sol);
+
+            historia.append(getOperation(num1, num2, operacio.toString(), sol));
+
         } catch (Exception e) {
             //Llancem un TOAST com a missatge per indicar que falta un numero per insertar.
-            //No ho fem en cas de que sigui decimal ja que num1 i num dos estan declarats de tipus int
-            //i al textview que explica l'aplicació ja diu que han de introduir nombres enters
-
             Context context = getApplicationContext();
             CharSequence text = "Cal indicar els dos valors numèrics";
             int duration = Toast.LENGTH_SHORT;
 
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
-
         }
-
     }
+
+    public String getOperation(float value1, float value2, String operation, float result){
+        StringBuilder sb = new StringBuilder();
+        sb.append(value1);
+        sb.append(operation);
+        sb.append(value2);
+        sb.append("=");
+        sb.append(result);
+        sb.append(",");
+        return sb.toString();
+    }
+
 
     public void goToListaOperaciones(View view){
-        Intent inb1 = new Intent(PantallaPrincipal.this,ListaOperaciones.class);
-        startActivity(inb1);
+        //pasar a la vista Lista de Operaciones
+        Intent inb1 = new Intent(getApplicationContext(),ListaOperaciones.class);
+        //añadir la info a pasar a la otra vista
+        inb1.putExtra("Op", historia.toString());
+        //iniciar la otra actividad (vista)
+        startActivityForResult(inb1,100);
     }
-
 
 }

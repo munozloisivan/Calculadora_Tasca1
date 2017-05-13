@@ -14,6 +14,9 @@ public class ConfirmarBorrar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmar_borrar);
+        Log.d(tag, "Event onCreate()");
+
+
     }
 
     @Override
@@ -57,8 +60,20 @@ public class ConfirmarBorrar extends AppCompatActivity {
 
     }
 
-    public void goToListaOperaciones(View view){
-        Intent inb1 = new Intent(ConfirmarBorrar.this,ListaOperaciones.class);
-        startActivity(inb1);
+    public void onClicksibutton(View view){
+        Intent intres = getIntent();
+        setResult(RESULT_OK, intres);
+        finish();
+    }
+
+
+    public void onClicknobutton(View view){
+
+        Intent intres = getIntent();
+      setResult(RESULT_CANCELED, intres);
+        finish();
+      //  Intent inb1 = new Intent(ConfirmarBorrar.this,ListaOperaciones.class);
+       // startActivity(inb1);
+
     }
 }

@@ -1,19 +1,50 @@
 package edu.upc.eetac.dsa.calculadora;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ListaOperaciones extends AppCompatActivity {
 
     String tag = "Llista Operacions"; // tag que indica el ciclo de vida de la app
 
+    List<String> historial = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_llista_operacions);
+        Log.d(tag, "Event onCreate()");
+
+        String[] totalop = getIntent().getExtras().getString("Op").split(",");
+        for (int i=0; i<totalop.length; i++){
+            if (!totalop[i].equals("")){
+                historial.add(i + 1 + " : " +totalop[i]);
+            }
+        }
+
+        ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,historial);
+        ListView listView = (ListView) findViewById(R.id.List);
+        listView.setAdapter(adapter);
+
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        Intent intres = getIntent();
+        if ((requestCode==101)&&(resultCode== Activity.RESULT_OK)){
+            this.historial.clear();
+            setResult(1337, intres);
+            finish();
+        }
     }
 
     @Override
@@ -63,7 +94,7 @@ public class ListaOperaciones extends AppCompatActivity {
     }
 
     public void goToConfirmarBorrar(View view){
-        Intent intent2 = new Intent(ListaOperaciones.this, ConfirmarBorrar.class);
-        startActivity(intent2);
+        Intent intent2 = new Intent(getApplicationContext(), ConfirmarBorrar.class);
+        startActivityForResult(intent2,101);
     }
 }

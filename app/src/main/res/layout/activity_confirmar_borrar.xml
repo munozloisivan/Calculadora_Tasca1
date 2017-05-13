@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/si"
+        android:id="@+id/sibutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SI"
@@ -32,7 +32,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginEnd="76dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="165dp" />
+        android:layout_marginBottom="165dp"
+        android:onClick="onClicksibutton"/>
 
     <Button
         android:id="@+id/nobutton"
@@ -40,9 +41,9 @@
         android:layout_height="wrap_content"
         android:text="NO"
         android:layout_marginStart="76dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/si"
+        app:layout_constraintBaseline_toBaselineOf="@+id/sibutton"
         tools:layout_constraintBaseline_creator="1"
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:onClick="goToListaOperaciones"/>
+        android:onClick="onClicknobutton"/>
 </android.support.constraint.ConstraintLayout>
