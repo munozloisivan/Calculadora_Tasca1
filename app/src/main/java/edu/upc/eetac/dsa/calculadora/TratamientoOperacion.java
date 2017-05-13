@@ -5,6 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
+import static edu.upc.eetac.dsa.calculadora.R.id.num1;
+import static edu.upc.eetac.dsa.calculadora.R.id.operseleccionada;
+import static edu.upc.eetac.dsa.calculadora.R.id.text;
 
 public class TratamientoOperacion extends AppCompatActivity {
 
@@ -14,6 +23,18 @@ public class TratamientoOperacion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tratamiento_operacion);
+        Log.d(tag, "Event onCreate()");
+
+       //recibo los datos del intent
+       // String seleccion = getIntent().getExtras().getString("selected");
+
+        String seleccion = getIntent().getExtras().getString("sel");
+        //compruebo que llega bien el texto pasado
+       //Toast.makeText(getApplicationContext(),seleccion, Toast.LENGTH_SHORT).show();
+
+        //se lo pongo en el TextView
+        TextView textView = (TextView) findViewById(operseleccionada);
+        textView.setText(seleccion);
     }
 
     @Override
@@ -60,22 +81,19 @@ public class TratamientoOperacion extends AppCompatActivity {
     public void funcionBorrar(View view){
 
         //borrar operacion del historial
-
-
-        //volver a la UI Lista de Operaciones
-        Intent inb1 = new Intent(TratamientoOperacion.this, ListaOperaciones.class);
-        startActivity(inb1);
+        Intent intres = getIntent();
+        setResult(RESULT_CANCELED, intres);
+        finish();
     }
 
     public void funcionModificar(View view){
-
-        //volver a la UI Pantalla principal
-        Intent intent = new Intent(TratamientoOperacion.this, PantallaPrincipal.class);
-        startActivity(intent);
-
         //retornar datos de la operacion para refrescarlos en la pantalla principal
-
-
-
+        Intent intres = getIntent();
+        TextView textView = (TextView) findViewById(operseleccionada);
+        String operacion = textView.getText().toString();
+        intres.putExtra("val", operacion);
+        setResult(RESULT_OK, intres);
+        finish();
     }
 }
+

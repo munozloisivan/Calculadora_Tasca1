@@ -6,8 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,16 +28,35 @@ public class ListaOperaciones extends AppCompatActivity {
         Log.d(tag, "Event onCreate()");
 
         String[] totalop = getIntent().getExtras().getString("Op").split(",");
-        for (int i=0; i<totalop.length; i++){
-            if (!totalop[i].equals("")){
-                historial.add(i + 1 + " : " +totalop[i]);
+        for (int i = 0; i < totalop.length; i++) {
+            if (!totalop[i].equals("")) {
+                historial.add(i + 1 + " : " + totalop[i]);
             }
         }
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,historial);
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, historial);
         ListView listView = (ListView) findViewById(R.id.List);
         listView.setAdapter(adapter);
 
+
+        //prueba para la ultima parte
+        // si que funciona, me selecciona lo que hay en cada fila
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //para mostrar el valor de la fila seleccionada hago un toast a modo de comprobacion
+                //Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+
+                //vamos a llamar a la UI TratamientoOperacion
+                //para pasarle dicha fila y alli tratarla como se deba
+                String sel = ((TextView) view).getText().toString();
+                Intent intent = new Intent(getApplicationContext(), TratamientoOperacion.class);
+                intent.putExtra("sel",sel);
+                startActivityForResult(intent,105);
+
+               // goToTratamientoOperacion(view, ((TextView) view).getText().toString());
+            }
+        });
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -43,6 +65,11 @@ public class ListaOperaciones extends AppCompatActivity {
         if ((requestCode==101)&&(resultCode== Activity.RESULT_OK)){
             this.historial.clear();
             setResult(1337, intres);
+            finish();
+        }
+        else if((requestCode==105)&&(resultCode==Activity.RESULT_OK)){
+            intres.putExtra("val2",getIntent().getExtras().getString("val"));
+            setResult(1400, intres);
             finish();
         }
     }
@@ -99,5 +126,16 @@ public class ListaOperaciones extends AppCompatActivity {
     public void goToConfirmarBorrar(View view){
         Intent intent2 = new Intent(getApplicationContext(), ConfirmarBorrar.class);
         startActivityForResult(intent2,101);
+    }
+
+    public void goToTratamientoOperacion(View view, String seleccion){
+
+       /* Intent intent3 = new Intent(getApplicationContext(), TratamientoOperacion.class);
+        //añado info a pasar a la siguiente vista
+        intent3.putExtra("selected", seleccion);
+        startActivityForResult(intent3, 105);
+        */
+
+
     }
 }

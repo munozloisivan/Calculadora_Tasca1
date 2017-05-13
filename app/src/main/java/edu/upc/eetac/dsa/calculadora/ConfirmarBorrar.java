@@ -71,8 +71,6 @@ public class ConfirmarBorrar extends AppCompatActivity {
         Intent intres = getIntent();
       setResult(RESULT_CANCELED, intres);
         finish();
-      //  Intent inb1 = new Intent(ConfirmarBorrar.this,ListaOperaciones.class);
-       // startActivity(inb1);
 
     }
 }

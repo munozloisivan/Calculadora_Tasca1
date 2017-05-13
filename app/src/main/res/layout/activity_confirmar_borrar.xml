@@ -26,24 +26,26 @@
         android:id="@+id/sibutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SI"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="76dp"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginBottom="165dp"
-        android:onClick="onClicksibutton"/>
+        android:layout_marginEnd="76dp"
+        android:onClick="onClicksibutton"
+        android:text="SI"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintRight_creator="1" />
 
     <Button
         android:id="@+id/nobutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NO"
         android:layout_marginStart="76dp"
+        android:onClick="onClicknobutton"
+        android:text="NO"
+        android:textAllCaps="false"
         app:layout_constraintBaseline_toBaselineOf="@+id/sibutton"
-        tools:layout_constraintBaseline_creator="1"
-        tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:onClick="onClicknobutton"/>
+        tools:layout_constraintBaseline_creator="1"
+        tools:layout_constraintLeft_creator="1" />
 </android.support.constraint.ConstraintLayout>

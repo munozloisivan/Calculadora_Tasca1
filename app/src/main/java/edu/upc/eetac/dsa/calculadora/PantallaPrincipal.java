@@ -12,7 +12,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import static edu.upc.eetac.dsa.calculadora.R.id.num1;
-import static edu.upc.eetac.dsa.calculadora.R.id.num2;
+
 
 public class PantallaPrincipal extends AppCompatActivity {
 
@@ -27,16 +27,34 @@ public class PantallaPrincipal extends AppCompatActivity {
         Log.d(tag, "Event onCreate()");
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if ((requestCode==100)&&(resultCode== Activity.RESULT_OK)){
+        if ((requestCode == 100) && (resultCode == Activity.RESULT_OK)) {
 
         }
-        else if (resultCode == 1337){
-            this.historia.delete(0,historia.length());
+        //prueba es posible que se tenga que borrar
+
+        else if (resultCode == 1337) {
+            this.historia.delete(0, historia.length());
+        } else if (resultCode == 1500) {
+            //this.historia.deleteCharAt();
+        } else if ((requestCode == 105) && (resultCode == 1400)) {
+            {//  Toast.makeText(getApplicationContext(),"ha llegado", Toast.LENGTH_SHORT).show();
+
+                // Toast.makeText(getApplicationContext(),"va",Toast.LENGTH_SHORT).show();
+             //   String valo = data.getExtras().getString("val2");
+               // Toast.makeText(getApplicationContext(), valo, Toast.LENGTH_SHORT).show();
+
+                // EditText numero1 = (EditText) findViewById(num1);
+                // EditText numero2 = (EditText) findViewById(num2);
+                //  EditText resultado = (EditText) findViewById(res);
+                //  RadioGroup rg = (RadioGroup) findViewById(radioGroup);
+
+            }
         }
     }
+
 
     @Override
     protected void onStart() {
