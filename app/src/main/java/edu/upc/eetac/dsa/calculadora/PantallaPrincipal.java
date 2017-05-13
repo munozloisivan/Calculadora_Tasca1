@@ -9,9 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import static edu.upc.eetac.dsa.calculadora.R.id.num1;
+import static edu.upc.eetac.dsa.calculadora.R.id.num2;
+import static edu.upc.eetac.dsa.calculadora.R.id.radioGroup;
+import static edu.upc.eetac.dsa.calculadora.R.id.res;
 
 
 public class PantallaPrincipal extends AppCompatActivity {
@@ -30,14 +34,40 @@ public class PantallaPrincipal extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+         EditText numero1 = (EditText) findViewById(num1);
+        EditText numero2 = (EditText) findViewById(num2);
+         EditText resultadoh = (EditText) findViewById(res);
+         RadioGroup rg = (RadioGroup) findViewById(radioGroup);
+
+
         Bundle result = data.getExtras();
 
         if (resultCode == 1400){
 
-            System.out.println("HELOOOO BEBIIIISSS XDDDD");
             String resultado = data.getExtras().getString("tratado");
-            System.out.println("RESULTADOOOOOOOOOOOOOOOO"+resultado);
-            
+
+            String[] trozos2=null;
+            String[] trozos1 = result.getString("tratado").split("=");
+            if (trozos1[0].contains("+")){
+                trozos2 = trozos1[0].split("\\+");
+                rg.check(R.id.suma);
+            }
+            if(trozos1[0].contains("-")){
+                trozos2= trozos1[0].split("-");
+                rg.check(R.id.resta);
+            }
+            if(trozos1[0].contains("*")){
+                trozos2= trozos1[0].split("\\*");
+                rg.check(R.id.multiplicacion);
+            }
+            if(trozos1[0].contains("/")){
+                trozos2= trozos1[0].split("/");
+                rg.check(R.id.division);
+            }
+
+            numero1.setText(trozos2[0].substring(4));
+            numero2.setText(trozos2[1]);
+            resultadoh.setText("0");
         }
 
 
@@ -147,7 +177,7 @@ public class PantallaPrincipal extends AppCompatActivity {
 
         EditText editText = (EditText) findViewById(num1);
         editText.setText("0");
-        EditText editText2 = (EditText) findViewById(R.id.num2);
+        EditText editText2 = (EditText) findViewById(num2);
         editText2.setText("0");
         EditText editText3 = (EditText) findViewById(R.id.res);
         editText3.setText("0");
@@ -167,7 +197,7 @@ public class PantallaPrincipal extends AppCompatActivity {
             EditText editTextnum1 = (EditText) findViewById(num1);
             float num1 = Float.parseFloat(editTextnum1.getText().toString());
             Log.d(tag, "num1: "+num1); //verificacio de la correcta obtenció dels numeros
-            EditText editTextnum2 = (EditText) findViewById(R.id.num2);
+            EditText editTextnum2 = (EditText) findViewById(num2);
             float num2 = Float.parseFloat(editTextnum2.getText().toString());
             Log.d(tag, "num1: "+num2);
 
