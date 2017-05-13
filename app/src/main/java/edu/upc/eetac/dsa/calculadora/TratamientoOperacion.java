@@ -18,7 +18,7 @@ import static edu.upc.eetac.dsa.calculadora.R.id.text;
 public class TratamientoOperacion extends AppCompatActivity {
 
     String tag = "TratamientoOperacion";
-
+    String seleccion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,9 +28,9 @@ public class TratamientoOperacion extends AppCompatActivity {
        //recibo los datos del intent
        // String seleccion = getIntent().getExtras().getString("selected");
 
-        String seleccion = getIntent().getExtras().getString("sel");
+        seleccion = getIntent().getExtras().getString("sel");
         //compruebo que llega bien el texto pasado
-       //Toast.makeText(getApplicationContext(),seleccion, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getApplicationContext(),seleccion, Toast.LENGTH_SHORT).show();
 
         //se lo pongo en el TextView
         TextView textView = (TextView) findViewById(operseleccionada);
@@ -82,16 +82,15 @@ public class TratamientoOperacion extends AppCompatActivity {
 
         //borrar operacion del historial
         Intent intres = getIntent();
-        setResult(RESULT_CANCELED, intres);
+        intres.putExtra("borrar",seleccion);
+        setResult(1600, intres);
         finish();
     }
 
     public void funcionModificar(View view){
         //retornar datos de la operacion para refrescarlos en la pantalla principal
         Intent intres = getIntent();
-        TextView textView = (TextView) findViewById(operseleccionada);
-        String operacion = textView.getText().toString();
-        intres.putExtra("val", operacion);
+        intres.putExtra("tratado", seleccion);
         setResult(RESULT_OK, intres);
         finish();
     }

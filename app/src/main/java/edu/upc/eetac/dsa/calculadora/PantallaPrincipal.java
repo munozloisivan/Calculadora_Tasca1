@@ -37,7 +37,7 @@ public class PantallaPrincipal extends AppCompatActivity {
 
         else if (resultCode == 1337) {
             this.historia.delete(0, historia.length());
-        } else if (resultCode == 1500) {
+        } /*else if (resultCode == 1500) {
             //this.historia.deleteCharAt();
         } else if ((requestCode == 105) && (resultCode == 1400)) {
             {//  Toast.makeText(getApplicationContext(),"ha llegado", Toast.LENGTH_SHORT).show();
@@ -52,7 +52,7 @@ public class PantallaPrincipal extends AppCompatActivity {
                 //  RadioGroup rg = (RadioGroup) findViewById(radioGroup);
 
             }
-        }
+        } */
     }
 
 
