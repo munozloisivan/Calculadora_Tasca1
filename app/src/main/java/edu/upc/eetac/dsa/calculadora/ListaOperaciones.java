@@ -74,13 +74,14 @@ public class ListaOperaciones extends AppCompatActivity {
         }
 
         //para el MODIFICAR
-        else if((requestCode==105)&&(resultCode==Activity.RESULT_OK)){
+        else if((requestCode==105)&&(resultCode== 1700)){
             //aqui si que entra
             String stres1 = res.getString("tratado");
             System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSS"+res.getString("tratado"));       //lo que llega es NULL
-
+            Intent intent1 = getIntent();
+            intent1.putExtra("tratado", stres1);
           //  data.putExtra("val2",getIntent().getExtras().getString("tratado"));
-            setResult(1400, data);
+            setResult(1400, intent1);
             finish();
         }
 

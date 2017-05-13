@@ -91,7 +91,7 @@ public class TratamientoOperacion extends AppCompatActivity {
         //retornar datos de la operacion para refrescarlos en la pantalla principal
         Intent intres = getIntent();
         intres.putExtra("tratado", seleccion);
-        setResult(RESULT_OK, intres);
+        setResult(1700, intres);
         finish();
     }
 }

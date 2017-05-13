@@ -32,7 +32,16 @@ public class PantallaPrincipal extends AppCompatActivity {
 
         Bundle result = data.getExtras();
 
-        if ((requestCode == 100) && (resultCode == Activity.RESULT_OK)) {
+        if (resultCode == 1400){
+
+            System.out.println("HELOOOO BEBIIIISSS XDDDD");
+            String resultado = data.getExtras().getString("tratado");
+            System.out.println("RESULTADOOOOOOOOOOOOOOOO"+resultado);
+            
+        }
+
+
+        else if ((requestCode == 100) && (resultCode == Activity.RESULT_OK)) {
 
         }
         //prueba es posible que se tenga que borrar
