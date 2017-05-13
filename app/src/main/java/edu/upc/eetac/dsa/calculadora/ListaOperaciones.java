@@ -77,7 +77,6 @@ public class ListaOperaciones extends AppCompatActivity {
         else if((requestCode==105)&&(resultCode== 1700)){
             //aqui si que entra
             String stres1 = res.getString("tratado");
-            System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSS"+res.getString("tratado"));       //lo que llega es NULL
             Intent intent1 = getIntent();
             intent1.putExtra("tratado", stres1);
           //  data.putExtra("val2",getIntent().getExtras().getString("tratado"));
@@ -98,6 +97,8 @@ public class ListaOperaciones extends AppCompatActivity {
             ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, historial);
             ListView listView = (ListView) findViewById(R.id.List);
             listView.setAdapter(adapter);
+            Intent intent2 = getIntent();
+            setResult(1600,intent2);
         }
     }
 

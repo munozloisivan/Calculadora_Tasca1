@@ -7,11 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import static edu.upc.eetac.dsa.calculadora.R.id.historial;
 import static edu.upc.eetac.dsa.calculadora.R.id.num1;
 import static edu.upc.eetac.dsa.calculadora.R.id.num2;
 import static edu.upc.eetac.dsa.calculadora.R.id.radioGroup;
@@ -68,13 +71,24 @@ public class PantallaPrincipal extends AppCompatActivity {
             numero1.setText(trozos2[0].substring(4));
             numero2.setText(trozos2[1]);
             resultadoh.setText("0");
-        }
-
-
-        else if ((requestCode == 100) && (resultCode == Activity.RESULT_OK)) {
 
         }
-        //prueba es posible que se tenga que borrar
+
+
+        else if (resultCode == 1600) {
+
+         /*   String res2 = data.getExtras().getString("borrar");
+            for (int i=0; i<historia.length();i++){
+                if (historia.equals(res2)){
+                    historia.deleteCharAt(i);
+                }
+            }
+
+            ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, historial);
+            ListView listView = (ListView) findViewById(R.id.List);
+            listView.setAdapter(adapter);
+        } */
+        }
 
         else if (resultCode == 1337) {
             this.historia.delete(0, historia.length());
