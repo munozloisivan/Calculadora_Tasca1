@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ListaOperaciones" />
-        <activity android:name=".ConfirmarBorrar"></activity>
+        <activity android:name=".ConfirmarBorrar" />
+        <activity android:name=".TratamientoOperacion"></activity>
     </application>
 
 </manifest>

@@ -53,17 +53,19 @@
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="191dp"
-        android:layout_height="0dp"
+        android:layout_width="170dp"
+        android:layout_height="315dp"
         android:layout_marginBottom="26dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="18dp"
         app:layout_constraintBottom_toTopOf="@+id/nobutton"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        tools:layout_constraintTop_creator="1"
+        tools:layout_editor_absoluteY="310dp" />
 
 </android.support.constraint.ConstraintLayout>
