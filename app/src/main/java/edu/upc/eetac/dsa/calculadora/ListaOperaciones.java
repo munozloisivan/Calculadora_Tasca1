@@ -79,17 +79,17 @@ public class ListaOperaciones extends AppCompatActivity {
             String stres1 = res.getString("tratado");
             System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSS"+res.getString("tratado"));       //lo que llega es NULL
 
-            data.putExtra("val2",getIntent().getExtras().getString("tratado"));
+          //  data.putExtra("val2",getIntent().getExtras().getString("tratado"));
             setResult(1400, data);
             finish();
         }
 
         //para el BORRAR
-        else if ((requestCode == 105) && (resultCode == Activity.RESULT_CANCELED)){
+        else if ((requestCode == 105) && (resultCode == 1600)){
                 System.out.println("HA ENTRADO EN BORARA :");
                 String res2 = data.getExtras().getString("borrar");
             for (int i=0; i<historial.size();i++){
-                if (historial.get(i).equals(res)){
+                if (historial.get(i).equals(res2)){
                     historial.remove(i);
                 }
             }

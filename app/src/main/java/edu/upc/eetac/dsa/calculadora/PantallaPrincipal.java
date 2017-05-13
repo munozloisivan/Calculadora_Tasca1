@@ -30,6 +30,8 @@ public class PantallaPrincipal extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        Bundle result = data.getExtras();
+
         if ((requestCode == 100) && (resultCode == Activity.RESULT_OK)) {
 
         }
@@ -37,9 +39,13 @@ public class PantallaPrincipal extends AppCompatActivity {
 
         else if (resultCode == 1337) {
             this.historia.delete(0, historia.length());
-        } /*else if (resultCode == 1500) {
+        } else if (resultCode == 1500) {
             //this.historia.deleteCharAt();
         } else if ((requestCode == 105) && (resultCode == 1400)) {
+
+            String stres2 = result.getString("tratado");
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA: "+stres2);
+
             {//  Toast.makeText(getApplicationContext(),"ha llegado", Toast.LENGTH_SHORT).show();
 
                 // Toast.makeText(getApplicationContext(),"va",Toast.LENGTH_SHORT).show();
@@ -52,7 +58,7 @@ public class PantallaPrincipal extends AppCompatActivity {
                 //  RadioGroup rg = (RadioGroup) findViewById(radioGroup);
 
             }
-        } */
+        }
     }
 
 
